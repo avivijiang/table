@@ -14,7 +14,7 @@ define(['knockout', 'text!./table.html', 'jquery'], function (ko, templateMarkup
         self.contentList = [];
         self.listA = [];
         self.listB = ko.observableArray([]);
-        //显示数组
+        //显示数组        
         self.showList = [];
         //翻页信息
         self.pageIndex = ko.observable(0);
@@ -38,19 +38,13 @@ define(['knockout', 'text!./table.html', 'jquery'], function (ko, templateMarkup
         }
 
         loadData();
-        // Load data from remote
         function loadData() {
-            // $.ajax('../server/postdata.json', function (data) {
-            //     debugger;
-            //     self.loadTableInfo(self.pageIndex(), data);
-            // });
             $.ajax({
                 url: "../server/postdata.json"
             }).done(function (data) {
                 self.loadTableInfo(self.pageIndex(), data);
             });
         }
-
         //读取数据
         self.loadTableInfo = function (pageI, data) {
             self.selectPage([]);
@@ -110,14 +104,7 @@ define(['knockout', 'text!./table.html', 'jquery'], function (ko, templateMarkup
             self.fieldName = a;
             self.value = b;
         }
-
-
-
-
     }
-
-
-
     tableViewModel.prototype.dispose = function () { };
     return { viewModel: tableViewModel, template: templateMarkup };
 });
